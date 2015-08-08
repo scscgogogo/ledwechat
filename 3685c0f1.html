@@ -43,7 +43,10 @@
          Uart
      </button>
  </div>
-
+ <div class="button-bar">
+     <a class="button" style="background:pink; color:white" id="relay_on">Relay ON</a>
+     <a class="button" style="background:gray; color:white" id="relay_off">Relay OFF</a>
+ </div>
  <div class="button-bar">
      <a class="button" style="background:red; color:white" id="led_red">Red</a>
      <a class="button" style="background:green; color:white" id="led_green">Green</a>
@@ -142,6 +145,23 @@
         }
         // document.querySelector('#send2uart').addEventListener('touchstart', send2uart);
         document.querySelector('#send2uart').addEventListener('click', send2uart);
+
+
+        function relay_on() {
+            var topic = device_id+'/in/write';
+            var commond = '{"relay_switch":true}';
+            client.publish(topic, commond);
+        }
+        // document.querySelector('#led_on').addEventListener('touchstart', led_on);
+        document.querySelector('#relay_on').addEventListener('click', relay_on);
+
+        function relay_off() {
+            var topic = device_id+'/in/write';
+            var commond = '{"relay_switch":false}';
+            client.publish(topic, commond);
+        }
+        // document.querySelector('#led_on').addEventListener('touchstart', led_on);
+        document.querySelector('#relay_off').addEventListener('click', relay_off);
 
         function led_on() {
             var topic = device_id+'/in/write';
